@@ -1,5 +1,15 @@
 # 🛡️ Sri Lanka Strategic Defense Grid (SL-IADS)
 
+
+
+
+<center>
+
+![4](/imgs/4.gif)
+
+</center>
+
+
 An advanced, high-fidelity geospatial Integrated Air Defense System (IADS) simulator and optimizer specifically designed for the Sri Lankan topography.
 
 **🔗 Live Site:** [https://air-defense.ishanoshada.com](https://air-defense.ishanoshada.com)
@@ -8,10 +18,24 @@ An advanced, high-fidelity geospatial Integrated Air Defense System (IADS) simul
 
 ## 📖 Overview
 
+
+
+<center>
+
+![1](/imgs/1.png)
+
+</center>
+
 The **Sri Lanka Strategic Defense Grid** is a specialized strategic simulation tool developed for defense analysts and enthusiasts to model, optimize, and stress-test national air defense configurations. Leveraging real-world geospatial data and complex intercept geometry, the application provides a visual and data-driven approach to understanding multi-layered defense architecture.
 
 The platform uses a sophisticated **Solver Engine** to calculate coverage metrics across thousands of sampling points, ensuring that strategic assets are placed with mathematical precision to protect high-value urban centers, coastal regions, and inland infrastructure.
 
+
+<center>
+
+![2](/imgs/2.png)
+
+</center>
 ---
 
 ## 🚀 Key Features
@@ -35,6 +59,19 @@ The platform uses a sophisticated **Solver Engine** to calculate coverage metric
 *   **Mathematical Logic:** Access real-time formulas used for intercept geometry and spatial sampling.
 *   **Bilingual Support:** Full instructions and logic documentation in both **English** and **Sinhala (සිංහල)**.
 *   **Usage Instructions:** Detailed steps for deploying assets, running simulations, and exporting strategy bundles.
+
+
+<center>
+
+![3](/imgs/3.png)
+
+</center>
+
+<center>
+
+![5](/imgs/5.gif)
+
+</center>
 
 ---
 
