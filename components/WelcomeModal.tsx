@@ -17,75 +17,75 @@ const WelcomeModal: React.FC<WelcomeModalProps> = ({ onClose, lang, onToggleLang
   const subTextColor = mapTheme === 'dark' ? 'text-slate-400' : 'text-slate-500';
 
   return (
-    <div className="fixed inset-0 z-[5000] flex items-center justify-center p-4 backdrop-blur-2xl bg-black/60">
-      <div className={`${modalBg} w-full max-w-2xl rounded-[2.5rem] border shadow-[0_0_100px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col animate-in zoom-in-95 duration-500`}>
+    <div className="fixed inset-0 z-[5000] flex items-center justify-center p-2 md:p-4 backdrop-blur-2xl bg-black/60 overflow-hidden">
+      <div className={`${modalBg} w-full max-w-2xl max-h-[95vh] md:max-h-[90vh] rounded-[2rem] md:rounded-[2.5rem] border shadow-[0_0_100px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col animate-in zoom-in-95 duration-500`}>
         
         {/* Header Section */}
-        <div className="relative p-8 md:p-10 border-b border-white/5 bg-gradient-to-br from-blue-600/10 via-transparent to-transparent">
-          <div className="flex items-start justify-between">
-            <div className="flex items-center gap-5">
-              <div className="bg-gradient-to-br from-blue-600 to-indigo-800 p-4 rounded-2xl border border-white/20 shadow-2xl">
-                <Shield className="w-8 h-8 text-white" />
+        <div className="relative p-5 md:p-8 border-b border-white/5 bg-gradient-to-br from-blue-600/10 via-transparent to-transparent shrink-0">
+          <div className="flex items-start justify-between gap-2">
+            <div className="flex items-center gap-3 md:gap-5">
+              <div className="bg-gradient-to-br from-blue-600 to-indigo-800 p-2 md:p-4 rounded-xl md:rounded-2xl border border-white/20 shadow-2xl">
+                <Shield className="w-6 h-6 md:w-8 md:h-8 text-white" />
               </div>
-              <div>
-                <h2 className={`text-2xl md:text-3xl font-black uppercase tracking-tight ${textColor} leading-none mb-2`}>
+              <div className="min-w-0">
+                <h2 className={`text-lg md:text-2xl font-black uppercase tracking-tight ${textColor} leading-tight mb-1 truncate`}>
                   {t('welcome_title')}
                 </h2>
-                <div className="flex items-center gap-2 text-[10px] md:text-xs text-blue-400 font-bold uppercase tracking-[0.2em]">
-                  <Cpu className="w-3.5 h-3.5 animate-pulse" /> {t('welcome_intro')}
+                <div className="flex items-center gap-2 text-[8px] md:text-xs text-blue-400 font-bold uppercase tracking-[0.1em] md:tracking-[0.2em]">
+                  <Cpu className="w-3 md:w-3.5 h-3 md:h-3.5 animate-pulse" /> {t('welcome_intro')}
                 </div>
               </div>
             </div>
             
             <button 
               onClick={onToggleLang}
-              className={`p-3 rounded-xl border flex items-center gap-2 transition-all hover:scale-105 active:scale-95 ${mapTheme === 'dark' ? 'bg-white/5 border-white/10 text-emerald-400' : 'bg-slate-100 border-slate-200 text-emerald-600'}`}
+              className={`p-2 md:p-3 rounded-lg md:rounded-xl border flex items-center gap-1 md:gap-2 transition-all hover:scale-105 active:scale-95 shrink-0 ${mapTheme === 'dark' ? 'bg-white/5 border-white/10 text-emerald-400' : 'bg-slate-100 border-slate-200 text-emerald-600'}`}
             >
-              <Languages className="w-4 h-4" />
-              <span className="text-[10px] font-black uppercase">{lang === 'en' ? 'සිංහල' : 'English'}</span>
+              <Languages className="w-3.5 h-3.5 md:w-4 h-4" />
+              <span className="text-[8px] md:text-[10px] font-black uppercase">{lang === 'en' ? 'සිංහල' : 'English'}</span>
             </button>
           </div>
         </div>
 
         {/* Content Section */}
-        <div className="flex-1 overflow-y-auto p-8 md:p-10 space-y-8 custom-scrollbar">
-          <div className={`text-sm md:text-base leading-relaxed ${subTextColor} font-medium`}>
+        <div className="flex-1 overflow-y-auto p-5 md:p-10 space-y-6 md:space-y-8 custom-scrollbar">
+          <div className={`text-xs md:text-base leading-relaxed ${subTextColor} font-medium`}>
             {t('welcome_desc')}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className={`p-5 rounded-3xl border ${mapTheme === 'dark' ? 'bg-white/5 border-white/5' : 'bg-slate-50 border-slate-100'} flex items-start gap-4`}>
-              <div className="p-2 bg-blue-500/20 rounded-lg"><Globe className="w-5 h-5 text-blue-400" /></div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+            <div className={`p-4 md:p-5 rounded-2xl md:rounded-3xl border ${mapTheme === 'dark' ? 'bg-white/5 border-white/5' : 'bg-slate-50 border-slate-100'} flex items-start gap-3 md:gap-4`}>
+              <div className="p-2 bg-blue-500/20 rounded-lg shrink-0"><Globe className="w-4 h-4 md:w-5 h-5 text-blue-400" /></div>
               <div>
-                <div className={`text-[11px] font-black uppercase ${textColor}`}>{t('priority_land')} & {t('priority_city')}</div>
-                <div className="text-[10px] text-slate-500 mt-1">Realistic Sri Lankan topographic analysis.</div>
+                <div className={`text-[10px] md:text-[11px] font-black uppercase ${textColor}`}>{t('priority_land')} & {t('priority_city')}</div>
+                <div className="text-[9px] md:text-[10px] text-slate-500 mt-1">Realistic Sri Lankan topographic analysis.</div>
               </div>
             </div>
-            <div className={`p-5 rounded-3xl border ${mapTheme === 'dark' ? 'bg-white/5 border-white/5' : 'bg-slate-50 border-slate-100'} flex items-start gap-4`}>
-              <div className="p-2 bg-red-500/20 rounded-lg"><Bomb className="w-5 h-5 text-red-400" /></div>
+            <div className={`p-4 md:p-5 rounded-2xl md:rounded-3xl border ${mapTheme === 'dark' ? 'bg-white/5 border-white/5' : 'bg-slate-50 border-slate-100'} flex items-start gap-3 md:gap-4`}>
+              <div className="p-2 bg-red-500/20 rounded-lg shrink-0"><Bomb className="w-4 h-4 md:w-5 h-5 text-red-400" /></div>
               <div>
-                <div className={`text-[11px] font-black uppercase ${textColor}`}>{t('stress_sim')}</div>
-                <div className="text-[10px] text-slate-500 mt-1">Live hypersonic and cruise threat simulation.</div>
+                <div className={`text-[10px] md:text-[11px] font-black uppercase ${textColor}`}>{t('stress_sim')}</div>
+                <div className="text-[9px] md:text-[10px] text-slate-500 mt-1">Live hypersonic and cruise threat simulation.</div>
               </div>
             </div>
           </div>
 
-          <div className="p-6 rounded-3xl bg-amber-500/10 border border-amber-500/20 flex gap-4">
-            <Info className="w-6 h-6 text-amber-500 shrink-0" />
-            <div className="text-[11px] md:text-xs font-bold text-amber-500 leading-relaxed italic">
+          <div className="p-4 md:p-6 rounded-2xl md:rounded-3xl bg-amber-500/10 border border-amber-500/20 flex gap-3 md:gap-4">
+            <Info className="w-5 h-5 md:w-6 md:h-6 text-amber-500 shrink-0" />
+            <div className="text-[9px] md:text-[11px] font-bold text-amber-500 leading-relaxed italic">
               {t('edu_disclaimer')}
             </div>
           </div>
         </div>
 
         {/* Footer Section */}
-        <div className="p-8 md:p-10 border-t border-white/5 bg-slate-950/20">
+        <div className="p-5 md:p-8 border-t border-white/5 bg-slate-950/20 shrink-0">
           <button 
             onClick={onClose}
-            className="w-full bg-blue-600 hover:bg-blue-500 text-white font-black py-5 rounded-[1.5rem] shadow-2xl shadow-blue-500/20 flex items-center justify-center gap-3 transition-all transform hover:-translate-y-1 active:translate-y-0"
+            className="w-full bg-blue-600 hover:bg-blue-500 text-white font-black py-4 md:py-5 rounded-xl md:rounded-[1.5rem] shadow-2xl shadow-blue-500/20 flex items-center justify-center gap-2 md:gap-3 transition-all transform hover:-translate-y-1 active:translate-y-0"
           >
-            <CheckCircle2 className="w-5 h-5" />
-            <span className="uppercase tracking-widest text-sm">{t('get_started')}</span>
+            <CheckCircle2 className="w-4 h-4 md:w-5 h-5" />
+            <span className="uppercase tracking-widest text-[11px] md:text-sm">{t('get_started')}</span>
           </button>
         </div>
       </div>

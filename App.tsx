@@ -149,7 +149,10 @@ const MapController = ({ geoData }: { geoData: any }) => {
   useEffect(() => {
     if (geoData) {
       const layer = L.geoJSON(geoData);
-      map.fitBounds(layer.getBounds(), { padding: [20, 20] });
+      // Wait for map container to settle before fitting bounds to avoid grey areas
+      setTimeout(() => {
+        map.fitBounds(layer.getBounds(), { padding: [40, 40] });
+      }, 500);
     }
   }, [geoData, map]);
   return null;
@@ -169,12 +172,34 @@ const App: React.FC = () => {
     'JY-27': 1, 
     'YLC-18': 2 
   });
+
+  useEffect(() => {
+    const removeLeafletBottomRight = () => {
+      const el = document.querySelector(
+        ".leaflet-bottom.leaflet-right"
+      ) as HTMLElement | null;
+
+      if (el) el.remove();
+    };
+    removeLeafletBottomRight();
+    const observer = new MutationObserver(() => {
+      removeLeafletBottomRight();
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   const [activeRoleTab, setActiveRoleTab] = useState<SystemRole>('INTERCEPTOR');
   const [customArsenal, setCustomArsenal] = useState<SystemTemplate[]>([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isZenMode, setIsZenMode] = useState(false);
-  const [mapTheme, setMapTheme] = useState<MapTheme>('dark');
+  const [mapTheme, setMapTheme] = useState<MapTheme>('warm');
   const [threatColor, setThreatColor] = useState<string>('#ef4444');
   const [lang, setLang] = useState<Language>('en');
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -198,7 +223,7 @@ const App: React.FC = () => {
   }, [customArsenal]);
 
   const reservedColors = useMemo(() => {
-    return new Set(Object.values(allTemplatesMap).map(template => template.color.toLowerCase()));
+    return new Set((Object.values(allTemplatesMap) as SystemTemplate[]).map(template => template.color.toLowerCase()));
   }, [allTemplatesMap]);
 
   const [workshopMode, setWorkshopMode] = useState(false);
@@ -236,7 +261,7 @@ const App: React.FC = () => {
   const [cityCoverage, setCityCoverage] = useState(0);
   const [seaCoverage, setSeaCoverage] = useState(0);
   const [selectedConfigId, setSelectedConfigId] = useState<string | null>(null);
-  const [manualMode, setManualMode] = useState(true);
+  const [manualMode, setManualMode] = useState(false);
   const [simulationMode, setSimulationMode] = useState(false);
   const [placementStrategy, setPlacementStrategy] = useState<'inside' | 'outside' | 'both'>('inside');
   const [rankingPriorities, setRankingPriorities] = useState<PriorityType[]>(['land', 'urban']);
@@ -259,7 +284,6 @@ const App: React.FC = () => {
     };
     document.addEventListener('fullscreenchange', onFullscreenChange);
 
-    // Check if first load or 24h passed
     const lastDismissedStr = localStorage.getItem('sl_defense_welcome_dismissed_time');
     const currentTime = Date.now();
     const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
@@ -590,8 +614,10 @@ const App: React.FC = () => {
           if (json.objectives?.unitCounts) setUnitCounts(json.objectives.unitCounts);
           if (json.objectives?.stopMode) setStopMode(json.objectives.stopMode);
           if (json.objectives?.stopValue) {
-            if (json.objectives.stopMode === 'cycles') setIterations(json.objectives.stopValue);
-            else setTargetPercent(json.objectives.stopValue);
+            if (json.objectives.stopMode === 'cycles' || json.objectives.stopMode === 'target') {
+              if (json.objectives.stopMode === 'cycles') setIterations(json.objectives.stopValue);
+              else setTargetPercent(json.objectives.stopValue);
+            }
           }
           setHasImported(true);
         }
@@ -654,6 +680,7 @@ const App: React.FC = () => {
     const summary: Record<string, { count: number, color: string, role: SystemRole, systems: DefenseSystem[] }> = {};
     systems.forEach(s => {
       const key = s.category === 'Custom' ? s.name : s.category;
+      if (!key) return;
       if (!summary[key]) {
         summary[key] = { count: 0, color: s.color, role: s.role, systems: [] };
       }
@@ -1026,7 +1053,7 @@ const App: React.FC = () => {
         <div className="flex-1 relative overflow-hidden">
           <MapContainer 
             center={[7.8731, 80.7718]} 
-            zoom={8} 
+            zoom={7} 
             className="w-full h-full" 
             zoomControl={false}
             preferCanvas={true} 
@@ -1135,7 +1162,7 @@ const App: React.FC = () => {
                     <Box className="w-3 h-3" /> {lang === 'en' ? 'INVENTORY' : 'ඒකක ගබඩාව'}
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    {Object.entries(systemSummary).map(([name, data]) => {
+                    {(Object.entries(systemSummary) as [string, any][]).map(([name, data]) => {
                       const isExpanded = expandedInventory.includes(name);
                       return (
                         <div key={name} className="flex flex-col border border-white/5 rounded-lg overflow-hidden transition-all bg-black/10">
@@ -1155,7 +1182,7 @@ const App: React.FC = () => {
                           
                           {isExpanded && (
                             <div className="flex flex-col gap-1 p-2 bg-black/20 border-t border-white/5 animate-in slide-in-from-top-1 duration-200">
-                              {data.systems.map((s, idx) => (
+                              {(data.systems as DefenseSystem[]).map((s, idx) => (
                                 <div key={s.id} className="flex items-center justify-between py-1 group/item">
                                   <div className="flex items-center gap-2 overflow-hidden">
                                     <button 
@@ -1218,7 +1245,6 @@ const App: React.FC = () => {
               <>
                 <button 
                   onClick={toggleFullScreen} 
-                  /* Fix unintentional comparison by implementing correct theme branches for button classes */
                   className={`p-3 md:p-4 rounded-xl border transition-all flex items-center justify-center shadow-2xl backdrop-blur-md ${isFullscreen ? 'bg-blue-600 border-blue-400 text-white' : mapTheme === 'dark' ? 'bg-slate-900/80 border-white/10 text-slate-400' : mapTheme === 'warm' ? 'bg-[#fdf6e3]/80 border-[#93a1a1] text-slate-500' : 'bg-white/80 border-slate-200 text-slate-500'}`}
                   title={isFullscreen ? t('exit_fullscreen') : t('fullscreen')}
                 >
